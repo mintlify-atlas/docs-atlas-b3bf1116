@@ -1,0 +1,89 @@
+---
+title: "Hooks and filters"
+description: "WordPress hooks and filters available for developers to extend Tablentor's behavior."
+---
+
+## Overview
+
+Tablentor uses standard WordPress hooks for its initialization. The following hooks and filters are available for developers who want to extend the plugin. All hooks are registered in the main `Plugin` class constructor, which runs when `Plugin::instance()` is called on the `plugins_loaded` priority.
+
+---
+
+## WordPress action hooks
+
+These are the action hooks Tablentor registers internally. You can hook into them with `add_action()` at the appropriate priority if you need to run code before or after each callback.
+
+### `plugins_loaded`
+
+- **Callback:** `Admin::i18n()`
+- **Purpose:** Loads the plugin text domain (`tablentor`) from the `/languages/` directory, making all plugin strings available for translation.
+
+### `elementor/editor/after_enqueue_styles`
+
+- **Callback:** `Admin::editor_enqueue_scripts()`
+- **Purpose:** Enqueues the Elementor editor stylesheet (handle: `tablentor-editor`) so widget icons and editor-only UI display correctly inside the Elementor panel.
+
+### `elementor/widgets/widgets_registered`
+
+- **Callback:** `Widgets::register_widgets()`
+- **Purpose:** Registers the Basic Table (`Basic_Table`) and CSV Table (`Table_CSV`) widget classes with Elementor's widget manager, making both widgets available in the editor panel under the **Basic** category.
+
+### `elementor/frontend/after_enqueue_styles`
+
+- **Callback:** `Widgets::enqueue_styles()`
+- **Purpose:** Enqueues the DataTables stylesheet (handle: `tablentor-data-table`) and the CSV table stylesheet (handle: `tablentor-table-csv`) on the frontend.
+
+### `elementor/frontend/after_enqueue_scripts`
+
+- **Callback:** `Widgets::enqueue_scripts()`
+- **Purpose:** Enqueues the DataTables JavaScript library (handle: `tablentor-data-table`) and the CSV table JavaScript (handle: `tablentor-table-csv`) on the frontend. Both scripts declare `jquery` as a dependency.
+
+### `wp_head`
+
+- **Callback:** `Front::head()`
+- **Purpose:** Reserved for future frontend `<head>` output. The callback is currently empty.
+
+---
+
+## Translation and localization
+
+Tablentor is translation-ready. The text domain is `tablentor` and translation files (`.mo` / `.po`) belong in:
+
+```
+wp-content/plugins/tablentor/languages/
+```
+
+To load a custom translation file from a different location, use the `load_textdomain_mofile` filter:
+
+```php
+add_filter( 'load_textdomain_mofile', function( $mofile, $domain ) {
+    if ( 'tablentor' === $domain ) {
+        $mofile = WP_LANG_DIR . '/plugins/tablentor-' . get_locale() . '.mo';
+    }
+    return $mofile;
+}, 10, 2 );
+```
+
+---
+
+## Plugin constants
+
+The following constants are defined in the `Plugin::define()` method and are available throughout the WordPress lifecycle after `plugins_loaded`.
+
+<Note>
+  These constants are defined in the plugin's constructor and available throughout the WordPress lifecycle after `plugins_loaded`.
+</Note>
+
+| Constant | Value | Description |
+|---|---|---|
+| `CMPRTBL` | `__FILE__` of main plugin file | Absolute path to the main plugin file |
+| `CMPRTBL_DIR` | `dirname(CMPRTBL)` | Plugin root directory path |
+| `CMPRTBL_ASSETS` | `plugins_url('assets/', CMPRTBL)` | URL to the `assets/` directory |
+| `CMPRTBL_PREFIX` | `'CMPRTBL'` | String prefix used internally by the plugin |
+| `CMPRTBL_FILE` | `__FILE__` | Alias for the main plugin file path |
+| `CMPRTBL_BASENAME` | `plugin_basename(__FILE__)` | Plugin basename (e.g. `tablentor/tablentor.php`) |
+| `CMPRTBL_PATH` | `trailingslashit(plugin_dir_path(__FILE__))` | Absolute filesystem path to the plugin directory, with trailing slash |
+| `CMPRTBL_URL` | `trailingslashit(plugins_url('/', __FILE__))` | Full URL to the plugin directory, with trailing slash |
+| `CMPRTBL_ASSET_DIR` | `trailingslashit(plugin_dir_url(__FILE__) . 'assets/')` | URL to the `assets/` directory, with trailing slash |
+| `CMPRTBL_VERSION` | `'3.0.1'` | Current plugin version |
+| `CMPRTBL_DEV_MODE` | `bool` | `true` if a `.git` directory exists in the plugin root |

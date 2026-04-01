@@ -1,0 +1,69 @@
+{
+  "projectType": "frontend",
+  "projectName": "Tablentor",
+  "projectDescription": "A WordPress plugin that adds two Elementor widgets — Basic Table Builder and CSV Table Import — for creating responsive, styled tables without code.",
+  "theme": "palm",
+  "primaryColor": "#94cb04",
+  "lightColor": "#545454",
+  "darkColor": null,
+  "navigation": {
+    "tabs": [
+      {
+        "tab": "Documentation",
+        "groups": [
+          {
+            "group": "Get Started",
+            "pages": [
+              "introduction",
+              "installation",
+              "quickstart"
+            ]
+          },
+          {
+            "group": "Widgets",
+            "pages": [
+              "widgets/basic-table",
+              "widgets/csv-table"
+            ]
+          },
+          {
+            "group": "Styling & Customization",
+            "pages": [
+              "customization/styling-controls",
+              "customization/css-classes",
+              "customization/hooks-filters"
+            ]
+          },
+          {
+            "group": "Help",
+            "pages": [
+              "help/troubleshooting",
+              "help/faq",
+              "help/changelog"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "keyFeatures": [
+    "Basic Table Builder widget with up to 20 columns and unlimited rows",
+    "CSV Table Import widget supporting inline CSV text or external CSV file URLs",
+    "Live search functionality for filtering table rows in real time",
+    "DataTables integration providing pagination, sorting, and filtering",
+    "Rich Elementor styling controls for typography, colors, borders, spacing, and images",
+    "Responsive, mobile-first table layout",
+    "Translation-ready with WordPress i18n support",
+    "Cache-compatible with Elementor's caching system"
+  ],
+  "publicApiSurface": [
+    "Elementor widget: Basic_Table (widget name: basic-table)",
+    "Elementor widget: Table_CSV (widget name: tablentor-table-csv)",
+    "CSS class: .ct-basic-table — Basic Table container",
+    "CSS class: .tablentor-table-csv — CSV Table element",
+    "CSS class: .tablentor-bt-search — Basic Table search input container",
+    "CSS class: .tablentor-table-csv-container — CSV Table outer wrapper",
+    "WordPress filter: tablentor_table_output",
+    "WordPress action: elementor/widgets/widgets_registered (used to register widgets)"
+  ]
+}

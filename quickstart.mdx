@@ -1,80 +1,79 @@
 ---
-title: "Quickstart"
-description: "Start building awesome documentation in minutes"
+title: "Quick start"
+description: "Build your first Tablentor table in under 5 minutes."
 ---
 
-## Get started in three steps
+This guide walks you through creating your first table with each of the two Tablentor widgets. You will have a live, styled table on your page by the end.
 
-Get your documentation site running locally and make your first customization.
+## Create a basic table
 
-### Step 1: Set up your local environment
+<Steps>
+  <Step title="Open the Elementor editor">
+    Edit any page or post by clicking **Edit with Elementor**, or create a new page and open it in the editor.
+  </Step>
+  <Step title="Search for the Basic Table widget">
+    In the left widget panel, type `Basic Table` in the search field. The **Basic Table** widget will appear in the results.
+  </Step>
+  <Step title="Drag the widget onto the canvas">
+    Drag the **Basic Table** widget to the desired section or column on your page canvas.
+  </Step>
+  <Step title="Set the number of columns">
+    In the **Content** tab, find the **Number of Columns** control. Enter a value between 1 and 20 (default is 3). A corresponding column section appears for each column you define.
+  </Step>
+  <Step title="Add rows to each column">
+    Expand each **Column** section (Column 1, Column 2, etc.). Inside each column, use the **Repeater** to add rows:
 
-<AccordionGroup>
-  <Accordion icon="copy" title="Clone your docs locally">
-    During the onboarding process, you created a GitHub repository with your docs content if you didn't already have one. You can find a link to this repository in your [dashboard](https://dashboard.mintlify.com).
-    
-    To clone the repository locally so that you can make and preview changes to your docs, follow the [Cloning a repository](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository) guide in the GitHub docs.
-  </Accordion>
-  <Accordion icon="rectangle-terminal" title="Start the preview server">
-    1. Install the Mintlify CLI: `npm i -g mint`
-    2. Navigate to your docs directory and run: `mint dev`
-    3. Open `http://localhost:3000` to see your docs live!
-    
-    <Tip>Your preview updates automatically as you edit files.</Tip>
-  </Accordion>
-</AccordionGroup>
+    - Click **Add Item** to add a new row.
+    - Set the **Row Name** field to label the row.
+    - Choose a **Content Type**: `Content` for text or `Image` for an image.
+    - Enter your text content or select an image.
 
-### Step 2: Deploy your changes
+    Repeat for each column. Each row at the same repeater position corresponds to the same table row across all columns.
+  </Step>
+  <Step title="Configure search">
+    Scroll down to the **Enable Search** toggle. Turn it on if you want visitors to filter table rows in real time, or leave it off for a static table.
+  </Step>
+  <Step title="Apply styling">
+    Switch to the **Style** tab to customize the table's appearance:
 
-<AccordionGroup>
-  <Accordion icon="github" title="Install our GitHub app">
-    Install the Mintlify GitHub app from your [dashboard](https://dashboard.mintlify.com/settings/organization/github-app).
-    
-    Our GitHub app automatically deploys your changes to your docs site, so you don't need to manage deployments yourself.
-</Accordion>
-<Accordion icon="palette" title="Update your site name and colors">
-    For a first change, let's update the name and colors of your docs site.
+    - **Table Styling** — background color, border, border radius, box shadow, padding.
+    - **Table Heading** — typography, text color, and background for `<th>` cells.
+    - **Table Columns** — typography, text color, background, border, and padding for `<td>` cells.
+  </Step>
+  <Step title="Publish the page">
+    Click **Publish** (or **Update**) to make your table live.
+  </Step>
+</Steps>
 
-    1. Open `docs.json` in your editor.
-    2. Change the `"name"` field to your project name.
-    3. Update the `"colors"` to match your brand.
-    4. Save and see your changes instantly at `http://localhost:3000`.
+## Import a CSV table
 
-    <Tip>Try changing the primary color to see an immediate difference!</Tip>
-  </Accordion>
-</AccordionGroup>
+<Steps>
+  <Step title="Add the Table CSV widget">
+    In the Elementor widget panel, search for `Table CSV`. Drag the **Table CSV** widget onto your canvas.
+  </Step>
+  <Step title="Paste your CSV data">
+    In the **Content** tab, locate the **CSV Data** textarea. Paste your comma-separated data directly into the field. Format the data with one row per line and values separated by commas:
 
-### Step 3: Go live
+    ```csv
+    Name, Age, City, Country
+    John Doe, 25, New York, USA
+    Jane Smith, 30, London, UK
+    Mike Johnson, 35, Toronto, Canada
+    ```
 
-<Accordion icon="rocket" title="Publish your docs">
-  1. Commit and push your changes.
-  2. Your docs will update and be live in moments!
-</Accordion>
+    The first line becomes column headers when the header option is enabled (see next step).
+  </Step>
+  <Step title="Set the first row as a header">
+    Toggle **First Row/Line as Header** to `on` if your CSV data's first line contains column names. The header row will be styled separately from the data rows.
+  </Step>
+  <Step title="Enable DataTables for pagination, sorting, and search">
+    Toggle **Enable Data Table** to `on` to activate the DataTables integration. This adds client-side pagination, column sorting, and a search field to the rendered table — useful for larger datasets.
+  </Step>
+  <Step title="Publish the page">
+    Click **Publish** (or **Update**). Your CSV data will render as a fully styled, responsive table on the frontend.
+  </Step>
+</Steps>
 
-## Next steps
-
-Now that you have your docs running, explore these key features:
-
-<CardGroup cols={2}>
-
-<Card title="Write Content" icon="pen-to-square" href="/essentials/markdown">
-  Learn MDX syntax and start writing your documentation.
-</Card>
-
-<Card title="Customize style" icon="palette" href="/essentials/settings">
-  Make your docs match your brand perfectly.
-</Card>
-
-<Card title="Add code examples" icon="square-code" href="/essentials/code">
-  Include syntax-highlighted code blocks.
-</Card>
-
-<Card title="API documentation" icon="code" href="/api-reference/introduction">
-  Auto-generate API docs from OpenAPI specs.
-</Card>
-
-</CardGroup>
-
-<Note>
-  **Need help?** See our [full documentation](https://mintlify.com/docs) or join our [community](https://mintlify.com/community).
-</Note>
+<Info>
+  In the Elementor editor, large CSV datasets are limited to 12 preview rows for performance. All rows display on the published frontend.
+</Info>

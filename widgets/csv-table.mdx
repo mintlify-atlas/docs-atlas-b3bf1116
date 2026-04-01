@@ -1,0 +1,260 @@
+---
+title: "CSV Table widget"
+description: "Import and display CSV data as a responsive Elementor table with optional DataTables-powered search, pagination, and sorting."
+---
+
+## Overview
+
+The **CSV Table** widget (`tablentor-table-csv`) parses raw CSV text or a remote CSV file URL and renders it as an HTML table inside Elementor. You can treat the first row as a header and optionally activate the [DataTables](https://datatables.net) library to add client-side search, pagination, and column sorting — all configurable from the Elementor panel.
+
+- **Widget name:** `tablentor-table-csv`
+- **Elementor category:** `basic`
+
+---
+
+## Content tab controls
+
+### Content section
+
+<ParamField body="CSV Data" type="textarea">
+  Paste your CSV directly into this field (10 rows tall in the panel). Each line becomes a table row; values within a line are split by commas. The default example is:
+
+  ```csv
+  name, age, address
+  John, 25, 123 Street Name City
+  Jane, 30, 456 Another St Another City
+  ```
+</ParamField>
+
+A more complete example with four columns:
+
+```csv
+Name, Age, City, Country
+John Doe, 25, New York, USA
+Jane Smith, 30, London, UK
+Mike Johnson, 35, Toronto, Canada
+```
+
+<ParamField body="First Row/Line as Header" type="switcher" default="yes">
+  When **Yes**, the first line of the CSV is parsed separately and rendered inside `<thead>` as `<th>` elements. All remaining rows are placed in `<tbody>`. This setting must be **Yes** for the **Enable Data Table** option to appear.
+</ParamField>
+
+<ParamField body="Enable Data Table" type="switcher">
+  Activates the DataTables JavaScript library on the rendered table, enabling client-side search, pagination, and sorting. Only visible when **First Row/Line as Header** is **Yes**.
+</ParamField>
+
+---
+
+### Data Table section
+
+Visible only when **Enable Data Table** is **Yes** and **First Row/Line as Header** is **Yes**.
+
+<ParamField body="Search Input" type="switcher" default="yes">
+  Show or hide the DataTables search box above the table.
+</ParamField>
+
+<ParamField body="Pagination" type="switcher" default="yes">
+  Show or hide pagination controls below the table.
+</ParamField>
+
+<ParamField body="Entries Per Page" type="switcher" default="yes">
+  Show or hide the entries-per-page length dropdown. Only visible when **Pagination** is **Yes**.
+</ParamField>
+
+<ParamField body="Sorting" type="switcher" default="yes">
+  Enable or disable column header click-to-sort. When enabled, DataTables renders sort indicator icons (`::before` / `::after` pseudo-elements) on each `<th>`.
+</ParamField>
+
+---
+
+## Style tab controls
+
+### Search section
+
+Visible when **Enable Data Table**, **First Row/Line as Header**, and **Search Input** are all **Yes**.
+
+**Label sub-section** — targets `.dt-search label`
+
+| Control | Type |
+|---|---|
+| Typography | Group_Control_Typography |
+| Text Color | Color |
+
+**Input sub-section** — targets `.dt-search .dt-input`
+
+| Control | Type | Default |
+|---|---|---|
+| Typography | Group_Control_Typography | — |
+| Text Color | Color | — |
+| Border | Group_Control_Border | — |
+| Border Radius | Dimensions (px / % / em / rem) | 4px all sides |
+| Padding | Dimensions (px / % / em / rem) | 5px all sides |
+| Margin | Dimensions (px / % / em / rem) | bottom 10px |
+
+---
+
+### Entries Per Page section
+
+Visible when **Enable Data Table**, **First Row/Line as Header**, **Pagination**, and **Entries Per Page** are all **Yes**.
+
+**Info sub-section** — targets `.dt-length label`
+
+| Control | Type |
+|---|---|
+| Typography | Group_Control_Typography |
+| Color | Color |
+
+**Dropdown sub-section** — targets `.dt-length select.dt-input`
+
+| Control | Type | Default |
+|---|---|---|
+| Typography | Group_Control_Typography | — |
+| Text Color | Color | — |
+| Border | Group_Control_Border | — |
+| Border Radius | Dimensions (px / % / em / rem) | 4px all sides |
+| Padding | Dimensions (px / % / em / rem) | 5px all sides |
+| Margin | Dimensions (px / % / em / rem) | bottom 10px |
+
+---
+
+### Table Heading section
+
+Styles `<thead> <th>` cells (`.tablentor-table-csv thead tr th`).
+
+| Control | Type | Notes |
+|---|---|---|
+| Sorting Icon Color | Color | Shown only when **Sorting** is enabled. Targets `.dt-column-order:before` and `.dt-column-order:after` |
+| Alignment | Choose (left / center / right) | — |
+| Typography | Group_Control_Typography | — |
+| Text Color | Color | — |
+| Background | Group_Control_Background (classic / gradient) | Image type excluded |
+| Border | Group_Control_Border | — |
+| Border Radius | Dimensions | — |
+| Padding | Dimensions | — |
+
+---
+
+### Table Body section
+
+Styles `<tbody> <td>` cells (`.tablentor-table-csv tbody tr td`).
+
+| Control | Type | Notes |
+|---|---|---|
+| Alignment | Choose (left / center / right) | — |
+| Typography | Group_Control_Typography | — |
+| Text Color | Color | — |
+| Background | Group_Control_Background (classic / gradient) | Image type excluded |
+| Border | Group_Control_Border | — |
+| Border Radius | Dimensions | — |
+| Padding | Dimensions | — |
+
+---
+
+### Pagination section
+
+Visible when **Enable Data Table**, **First Row/Line as Header**, and **Pagination** are all **Yes**.
+
+**Paging Info sub-section** — targets `.dt-info`
+
+| Control | Type |
+|---|---|
+| Typography | Group_Control_Typography |
+| Text Color | Color |
+
+**Buttons sub-section** — targets `.dt-paging .dt-paging-button`
+
+| Control | Type | Notes |
+|---|---|---|
+| Typography | Group_Control_Typography | — |
+| Border | Group_Control_Border | Color property excluded |
+| Border Radius | Dimensions | — |
+| Padding | Dimensions | — |
+| Margin | Dimensions | — |
+
+Button colors are split across two state tabs:
+
+<Tabs>
+  <Tab title="Normal">
+    | Control | Selector |
+    |---|---|
+    | Color | `.dt-paging-button` |
+    | Border Color | `.dt-paging-button` |
+    | Background Color | `div.dt-container .dt-paging .dt-paging-button` |
+  </Tab>
+  <Tab title="Hover">
+    Hover styles also apply to the `.current` (active page) button state.
+
+    | Control | Selector |
+    |---|---|
+    | Color | `.dt-paging-button:hover`, `.dt-paging-button.current` |
+    | Border Color | `.dt-paging-button:hover`, `.dt-paging-button.current` |
+    | Background Color | `div.dt-container .dt-paging .dt-paging-button:hover`, `…button.current` |
+  </Tab>
+</Tabs>
+
+---
+
+## Rendered HTML structure
+
+```html
+<div
+  id="tablentor-table-csv-{widget-id}"
+  class="tablentor-table-csv-container"
+  data-table="{base64-encoded-options}"
+>
+  <table class="tablentor-table-csv">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Age</th>
+        <th>City</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>John Doe</td>
+        <td>25</td>
+        <td>New York</td>
+      </tr>
+      <tr>
+        <td>Jane Smith</td>
+        <td>30</td>
+        <td>London</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+```
+
+When **Enable Data Table** is off, the container receives the class `no-data-table` instead of the `data-table` attribute. When both **Search Input** and **Pagination** are disabled, the container also gets the class `hide-table-heading`.
+
+---
+
+## DataTables integration
+
+When **Enable Data Table** is turned on, the widget serializes the enabled feature flags into a JSON object and encodes it as a base64 string stored in the `data-table` attribute on the container `<div>`. The front-end JavaScript reads this attribute, decodes it, and passes the options to DataTables when initializing the table element.
+
+Example decoded `data-table` value:
+
+```json
+{
+  "table": "yes",
+  "searching": "yes",
+  "paging": "yes",
+  "ordering": "yes"
+}
+```
+
+If **Entries Per Page** is disabled, `"paging_length": "no"` is added to the options object, which suppresses the length-change dropdown. DataTables maps these values to its own configuration when it initializes on the frontend.
+
+<Info>
+  In the Elementor editor, the CSV preview is limited to 12 rows for performance. All rows are rendered on the published frontend.
+</Info>
+
+<Warning>
+  **File URL import:** when using a CSV file URL, the file must have a `.csv` extension and be publicly accessible. The server fetches the file using PHP `file_get_contents()`. Private, password-protected, or self-signed HTTPS URLs will fail silently or produce an error message in place of the table.
+</Warning>
+
+### Editor preview behavior
+
+In the Elementor editor, when **Pagination** is enabled the widget renders a static dummy pagination bar below the table so you can style the buttons without leaving the editor. This dummy bar uses the same DataTables CSS class names (`.dt-paging`, `.dt-paging-button`, `.dt-info`) as the real library, so style changes in the panel are reflected immediately. The full DataTables instance — with real pagination, search, and sorting — initializes only on the published frontend.

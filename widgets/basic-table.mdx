@@ -1,0 +1,212 @@
+---
+title: "Basic Table widget"
+description: "Build structured tables manually with up to 20 columns, unlimited rows, live search, and full Elementor styling controls."
+---
+
+## Overview
+
+The **Basic Table** widget (`basic-table`) lets you build HTML tables manually inside Elementor using repeaters — no CSV or code required. Each column is a separate repeater list, and each row in that list becomes a cell. You can mark individual cells as headings, embed images, set per-row colors, and enable a live search input above the table.
+
+- **Widget name:** `basic-table`
+- **Elementor category:** `basic`
+
+---
+
+## Content tab controls
+
+### General section
+
+<ParamField body="Number of Column" type="number" default="3">
+  How many columns the table has. Accepts values from 1 to 20. Increasing this number reveals additional **Column** sections below.
+</ParamField>
+
+<Tip>
+  You can have up to 20 columns. Each column gets its own repeater section where you add as many rows as needed. Columns with more rows than others will produce empty cells to keep the table rectangular.
+</Tip>
+
+<ParamField body="Enable Search" type="switcher" default="no">
+  When set to **Yes**, a search input field is rendered above the table. Typing in it filters visible rows in real time. Enabling this also reveals the **Search Input** content section and the **Search Input** style section.
+</ParamField>
+
+---
+
+### Search Input section
+
+Visible only when **Enable Search** is set to **Yes**.
+
+<ParamField body="Placeholder" type="text" default="Search">
+  The placeholder text shown inside the search input before the user types.
+</ParamField>
+
+<ParamField body="Alignment" type="choose">
+  Controls the horizontal alignment of the search input wrapper. Options: **Left**, **Center**, **Right** (default: **Right**).
+</ParamField>
+
+---
+
+### Column 1 – Column 20 sections
+
+Each **Column N** section is shown only when **Number of Column** is set to N or higher. Each section contains a single **Repeater List** control; every item in the repeater becomes one row of that column.
+
+<Tip>
+  Column sections appear dynamically as you raise the column count. For example, setting the count to 5 reveals sections for Column 1 through Column 5.
+</Tip>
+
+**Repeater fields per row:**
+
+<ParamField body="Is this a heading?" type="switcher">
+  Determines the HTML element used to render this cell. When **Yes**, the cell is rendered as `<th>`; when **No** (default), it renders as `<td>`.
+</ParamField>
+
+<Note>
+  Use **Is this a heading?** to mark header cells within any column, not just the first row. A `<th>` cell will pick up all styles from the **Table Heading** style section, while a `<td>` cell uses **Table Columns** styles.
+</Note>
+
+<ParamField body="Row Name" type="text" default="Row Name">
+  A label displayed in the Elementor panel to identify this repeater item. It is not rendered on the frontend.
+</ParamField>
+
+<ParamField body="Content Type" type="select" default="Content">
+  Choose what this cell contains. Options:
+  - **Content** — a WYSIWYG text/HTML editor
+  - **Image** — a media picker
+</ParamField>
+
+<ParamField body="Content" type="wysiwyg" default="Row Content">
+  Rich text or HTML for the cell. Shown only when **Content Type** is set to **Content**.
+</ParamField>
+
+<ParamField body="Choose Image" type="media">
+  The image to display in the cell. Shown only when **Content Type** is set to **Image**. Defaults to the Elementor placeholder image.
+</ParamField>
+
+<ParamField body="Color" type="color">
+  Overrides the text color for this specific row item. Applied inline via CSS on the repeater item element.
+</ParamField>
+
+---
+
+## Style tab controls
+
+### Search Input section
+
+Shown only when **Enable Search** is set to **Yes**. All selectors target `.tablentor-bt-search-input`.
+
+| Control | Type | Default |
+|---|---|---|
+| Typography | Group_Control_Typography | — |
+| Text Color | Color | — |
+| Border | Group_Control_Border | — |
+| Border Radius | Dimensions (px / % / em / rem) | 4px all sides |
+| Padding | Dimensions (px / % / em / rem) | 5px all sides |
+| Margin | Dimensions (px / % / em / rem) | bottom 10px |
+
+---
+
+### Table Styling section
+
+Applied to the `.ct-basic-table` element.
+
+| Control | Type | Notes |
+|---|---|---|
+| Column Width | Slider (px / %) | Applied to both `th` and `td` cells |
+| Background | Group_Control_Background (classic / gradient) | — |
+| Border | Group_Control_Border | — |
+| Border Radius | Dimensions | — |
+| Box Shadow | Group_Control_Box_Shadow | — |
+| Padding | Dimensions | — |
+| Margin | Dimensions | — |
+
+---
+
+### Table Heading section
+
+Styles `<th>` cells (`.ct-basic-table tr th`).
+
+| Control | Type |
+|---|---|
+| Alignment | Choose (left / center / right) |
+| Typography | Group_Control_Typography |
+| Background | Group_Control_Background (classic / gradient) |
+| Border | Group_Control_Border |
+| Border Radius | Dimensions |
+| Padding | Dimensions |
+
+---
+
+### Table Columns section
+
+Styles `<td>` cells (`.ct-basic-table tr td`).
+
+| Control | Type |
+|---|---|
+| Alignment | Choose (left / center / right) |
+| Typography | Group_Control_Typography |
+| Background | Group_Control_Background (classic / gradient) |
+| Border | Group_Control_Border |
+| Border Radius | Dimensions |
+| Padding | Dimensions |
+
+---
+
+### Table Images section
+
+Applies to `img` elements inside both `th` and `td` cells.
+
+| Control | Type | Default |
+|---|---|---|
+| Image Width | Slider (px / %) | 50px |
+| Image Height | Slider (px / %) | — |
+| Border | Group_Control_Border | — |
+| Border Radius | Dimensions | — |
+
+---
+
+## Rendered HTML structure
+
+```html
+<div id="tablentor-bt-{widget-id}" class="ct-basic-table-container">
+
+  <!-- Rendered when Enable Search = yes -->
+  <div class="tablentor-bt-search">
+    <input class="tablentor-bt-search-input" placeholder="Search" />
+  </div>
+
+  <table class="ct-basic-table">
+    <tr>
+      <th>Heading Cell</th>
+      <td>Data Cell</td>
+    </tr>
+    <tr>
+      <td>Data Cell</td>
+      <td><img src="image.jpg"></td>
+    </tr>
+  </table>
+
+</div>
+```
+
+The widget renders one `<tr>` per row index across all columns. For each row position, it iterates over the columns in order and emits either a `<th>` or `<td>` depending on the **Is this a heading?** toggle for that item. If a column has fewer rows than the tallest column, empty cells are inserted to keep the table rectangular.
+
+---
+
+## Live search behavior
+
+When **Enable Search** is enabled, a jQuery listener is attached on `keyup` to the `.tablentor-bt-search-input` field. On each keystroke the handler reads the current input value, lowercases it, and calls `.toggle()` on every `<tr>` inside the table. A row stays visible only if its combined text content (via jQuery's `.text()`) contains the search string (case-insensitive match using `indexOf`).
+
+```javascript
+// Simplified version of the bundled search logic
+jQuery(document).ready(function ($) {
+  var container = '#tablentor-bt-{widget-id}';
+  $(container + ' .tablentor-bt-search-input').on('keyup', function () {
+    var value = $(this).val().toLowerCase();
+    $(container + ' .ct-basic-table tr').filter(function () {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
+    });
+  });
+});
+```
+
+<Note>
+  The search filter matches against the full text content of each row, including text inside nested HTML tags such as links or spans added through the WYSIWYG editor.
+</Note>

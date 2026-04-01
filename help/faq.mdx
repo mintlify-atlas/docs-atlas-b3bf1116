@@ -1,0 +1,64 @@
+---
+title: "FAQ"
+description: "Frequently asked questions about Tablentor."
+---
+
+<AccordionGroup>
+
+<Accordion title="Does Tablentor require Elementor?">
+  Yes. Tablentor is an Elementor addon and requires Elementor (free version) to be installed and active. It will not function without Elementor.
+</Accordion>
+
+<Accordion title="Does it work with Elementor Pro?">
+  Yes. Tablentor works seamlessly with both free Elementor and Elementor Pro.
+</Accordion>
+
+<Accordion title="Do I need any other plugins?">
+  No. Just Elementor and Tablentor. No third-party page builder addons, DataTables plugins, or other dependencies are required.
+</Accordion>
+
+<Accordion title="How many columns can I create?">
+  The **Basic Table** widget supports up to 20 columns. The **CSV Table** widget has no column limit — it creates as many columns as your CSV data contains.
+</Accordion>
+
+<Accordion title="Is there a row limit?">
+  No. The Basic Table widget uses Elementor repeaters which support unlimited items. The CSV Table renders all rows from your CSV — the editor shows a 12-row preview for performance, but all rows appear on the published frontend.
+</Accordion>
+
+<Accordion title="Can I import data from Excel?">
+  Not directly. Export your Excel file to CSV format first (**File → Save As → CSV**), then either paste the content into the CSV Data textarea or provide the file URL.
+</Accordion>
+
+<Accordion title="Are the tables responsive?">
+  Yes. All Tablentor tables are designed with a mobile-first approach and adapt automatically to different screen sizes and devices.
+</Accordion>
+
+<Accordion title="Can I fully customize the table design?">
+  Yes. Both widgets expose extensive styling controls in the Elementor **Style** tab — including colors, typography, borders, spacing, backgrounds, and image dimensions. No custom CSS is required for most customization needs.
+</Accordion>
+
+<Accordion title="Does it support live search?">
+  Yes. The **Basic Table** widget has an optional **Enable Search** toggle that adds a live search input above the table. The **CSV Table** widget supports search via the DataTables integration when **Enable Data Table** is turned on.
+</Accordion>
+
+<Accordion title="Is Tablentor translation ready?">
+  Yes. Tablentor uses the `tablentor` text domain and is fully localizable. Place `.mo` translation files in `wp-content/plugins/tablentor/languages/`.
+</Accordion>
+
+<Accordion title="Can I use images in table cells?">
+  Yes — in the **Basic Table** widget, each row supports an **Image** content type. You can control image width, height, border, and border radius under **Style → Table Images**.
+</Accordion>
+
+<Accordion title="Does it work with caching plugins?">
+  Yes. Tablentor is compatible with popular caching plugins and Elementor's built-in caching system.
+</Accordion>
+
+<Accordion title="What is the DataTables integration?">
+  The **CSV Table** widget uses the [DataTables](https://datatables.net/) jQuery library to add pagination, column sorting, and search to your table. Enable it by toggling **Enable Data Table** on in the Content tab. This requires **First Row/Line as Header** to also be enabled, as DataTables needs a `<thead>` element to initialise correctly.
+</Accordion>
+
+<Accordion title="Where do I find the widgets in Elementor?">
+  Both **Basic Table** and **Table CSV** appear under the **Basic** category in the Elementor widget panel. You can also search for them by name.
+</Accordion>
+
+</AccordionGroup>

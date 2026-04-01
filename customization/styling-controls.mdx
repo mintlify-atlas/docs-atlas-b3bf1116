@@ -1,0 +1,221 @@
+---
+title: "Styling controls"
+description: "A complete reference for all Elementor Style tab controls available in both Tablentor widgets."
+---
+
+## Overview
+
+Tablentor styling is entirely controlled within the Elementor **Style** tab — no separate CSS file editing required. Every control writes scoped inline CSS that Elementor injects into the page, and changes preview in real time inside the editor. There is no need to clear any cache or leave the editor to see the effect.
+
+<Tip>
+  All selectors are scoped to `{{WRAPPER}}` so styles only apply to the specific widget instance and never bleed into other tables on the page.
+</Tip>
+
+---
+
+## Basic Table styling controls
+
+The following sections appear in the **Style** tab of the [Basic Table widget](/widgets/basic-table).
+
+### Search Input
+
+Shown only when **Enable Search** is set to **Yes** in the Content tab. All controls target `.tablentor-bt-search-input`.
+
+| Control | Type | Default |
+|---|---|---|
+| Typography | Group_Control_Typography | — |
+| Text Color | Color | — |
+| Border | Group_Control_Border | — |
+| Border Radius | Dimensions (px / % / em / rem) | 4px all sides |
+| Padding | Dimensions (px / % / em / rem) | 5px all sides |
+| Margin | Dimensions (px / % / em / rem) | bottom 10px |
+
+---
+
+### Table Styling
+
+Controls the outer `<table>` element. CSS target: `.ct-basic-table`.
+
+| Control | Type | Notes |
+|---|---|---|
+| Column Width | Slider (px / %) | Applied to both `th` and `td` cells |
+| Background | Group_Control_Background (classic / gradient) | — |
+| Border | Group_Control_Border | — |
+| Border Radius | Dimensions | — |
+| Box Shadow | Group_Control_Box_Shadow | — |
+| Padding | Dimensions | — |
+| Margin | Dimensions | — |
+
+---
+
+### Table Heading
+
+Styles `<th>` cells. CSS target: `.ct-basic-table tr th`.
+
+| Control | Type |
+|---|---|
+| Alignment | Choose (left / center / right) |
+| Typography | Group_Control_Typography |
+| Background | Group_Control_Background (classic / gradient) |
+| Border | Group_Control_Border |
+| Border Radius | Dimensions |
+| Padding | Dimensions |
+
+---
+
+### Table Columns
+
+Styles `<td>` cells. CSS target: `.ct-basic-table tr td`.
+
+| Control | Type |
+|---|---|
+| Alignment | Choose (left / center / right) |
+| Typography | Group_Control_Typography |
+| Background | Group_Control_Background (classic / gradient) |
+| Border | Group_Control_Border |
+| Border Radius | Dimensions |
+| Padding | Dimensions |
+
+---
+
+### Table Images
+
+Applies to images embedded inside cells. CSS target: `.ct-basic-table tr td img, .ct-basic-table tr th img`.
+
+| Control | Type | Default |
+|---|---|---|
+| Image Width | Slider (px / %) | 50px |
+| Image Height | Slider (px / %) | — |
+| Border | Group_Control_Border | — |
+| Border Radius | Dimensions | — |
+
+---
+
+## CSV Table styling controls
+
+The following sections appear in the **Style** tab of the [CSV Table widget](/widgets/csv-table).
+
+### Search
+
+Shown only when **Enable Data Table**, **First Row/Line as Header**, and **Search Input** are all **Yes**.
+
+**Label** — targets `.dt-search label`
+
+| Control | Type |
+|---|---|
+| Typography | Group_Control_Typography |
+| Text Color | Color |
+
+**Input** — targets `.dt-search .dt-input`
+
+| Control | Type | Default |
+|---|---|---|
+| Typography | Group_Control_Typography | — |
+| Text Color | Color | — |
+| Border | Group_Control_Border | — |
+| Border Radius | Dimensions (px / % / em / rem) | 4px all sides |
+| Padding | Dimensions (px / % / em / rem) | 5px all sides |
+| Margin | Dimensions (px / % / em / rem) | bottom 10px |
+
+---
+
+### Entries Per Page
+
+Shown only when **Enable Data Table**, **First Row/Line as Header**, **Pagination**, and **Entries Per Page** are all **Yes**.
+
+**Info** — targets `.dt-length label`
+
+| Control | Type |
+|---|---|
+| Typography | Group_Control_Typography |
+| Color | Color |
+
+**Dropdown** — targets `.dt-length select.dt-input`
+
+| Control | Type | Default |
+|---|---|---|
+| Typography | Group_Control_Typography | — |
+| Text Color | Color | — |
+| Border | Group_Control_Border | — |
+| Border Radius | Dimensions (px / % / em / rem) | 4px all sides |
+| Padding | Dimensions (px / % / em / rem) | 5px all sides |
+| Margin | Dimensions (px / % / em / rem) | bottom 10px |
+
+---
+
+### Table Heading
+
+Styles `<thead>` cells. CSS target: `.tablentor-table-csv thead tr th`.
+
+| Control | Type | Notes |
+|---|---|---|
+| Sorting Icon Color | Color | Shown only when **Sorting** is enabled. Targets `.dt-column-order:before` and `.dt-column-order:after` |
+| Alignment | Choose (left / center / right) | — |
+| Typography | Group_Control_Typography | — |
+| Text Color | Color | — |
+| Background | Group_Control_Background (classic / gradient) | Image type excluded |
+| Border | Group_Control_Border | — |
+| Border Radius | Dimensions | — |
+| Padding | Dimensions | — |
+
+---
+
+### Table Body
+
+Styles `<tbody>` cells. CSS target: `.tablentor-table-csv tbody tr td`.
+
+| Control | Type |
+|---|---|
+| Alignment | Choose (left / center / right) |
+| Typography | Group_Control_Typography |
+| Text Color | Color |
+| Background | Group_Control_Background (classic / gradient) |
+| Border | Group_Control_Border |
+| Border Radius | Dimensions |
+| Padding | Dimensions |
+
+---
+
+### Pagination
+
+Shown only when **Enable Data Table**, **First Row/Line as Header**, and **Pagination** are all **Yes**.
+
+**Paging Info** — targets `.dt-info`
+
+| Control | Type |
+|---|---|
+| Typography | Group_Control_Typography |
+| Text Color | Color |
+
+**Buttons** — targets `.dt-paging .dt-paging-button`
+
+The following controls apply to all buttons regardless of state:
+
+| Control | Type | Notes |
+|---|---|---|
+| Typography | Group_Control_Typography | — |
+| Border | Group_Control_Border | Color field excluded |
+| Border Radius | Dimensions | — |
+| Padding | Dimensions | — |
+| Margin | Dimensions | — |
+
+Button color properties are split across two state tabs:
+
+<Tabs>
+  <Tab title="Normal">
+    | Control | Selector |
+    |---|---|
+    | Color | `.dt-paging-button` |
+    | Border Color | `.dt-paging-button` |
+    | Background Color | `div.dt-container .dt-paging .dt-paging-button` |
+  </Tab>
+  <Tab title="Hover">
+    Hover styles also apply to the `.current` (active page) button state.
+
+    | Control | Selector |
+    |---|---|
+    | Color | `.dt-paging-button:hover`, `.dt-paging-button.current` |
+    | Border Color | `.dt-paging-button:hover`, `.dt-paging-button.current` |
+    | Background Color | `div.dt-container .dt-paging .dt-paging-button:hover`, `…button.current` |
+  </Tab>
+</Tabs>

@@ -1,0 +1,84 @@
+---
+title: "CSS classes"
+description: "Reference for the CSS classes output by Tablentor widgets, for fine-grained custom styling."
+---
+
+## Overview
+
+While all styling can be done within Elementor's Style tab, you can also target Tablentor's output classes with custom CSS for advanced scenarios — such as alternating row colors, per-instance overrides, or styles that depend on pseudo-selectors not exposed in the panel.
+
+<Tip>
+  In Elementor, use the **Advanced** tab on a widget to add custom CSS classes. You can then target those classes in your theme's Custom CSS or a plugin like Simple Custom CSS.
+</Tip>
+
+---
+
+## Basic Table classes
+
+| Class | Element | Description |
+|---|---|---|
+| `.ct-basic-table-container` | Outer wrapper `<div>` | Contains both the search input and the table. Each instance has a unique `id="tablentor-bt-{widget-id}"`. |
+| `.ct-basic-table` | `<table>` element | The table itself. |
+| `.tablentor-bt-search` | Search wrapper `<div>` | Flex container holding the search input. Visible only when **Enable Search** is on. |
+| `.tablentor-bt-search-input` | `<input>` element | The search text field. |
+
+### Example CSS
+
+```css
+/* Style the search input for a specific widget instance */
+#tablentor-bt-abc123 .tablentor-bt-search-input {
+  border-color: #94cb04;
+  border-radius: 4px;
+}
+
+/* Alternating row colors */
+.ct-basic-table tr:nth-child(even) td {
+  background-color: #f9f9f9;
+}
+```
+
+---
+
+## CSV Table classes
+
+### Plugin-generated classes
+
+| Class | Element | Description |
+|---|---|---|
+| `.tablentor-table-csv-container` | Outer wrapper `<div>` | Contains the DataTables wrapper and table. Has `id="tablentor-table-csv-{widget-id}"`. |
+| `.tablentor-table-csv` | `<table>` element | The CSV table. DataTables is initialized on this element. |
+| `.no-data-table` | Added to the wrapper | Applied when **Enable Data Table** is off. |
+| `.hide-table-heading` | Added to the wrapper | Applied when neither **Search Input** nor **Pagination** is shown. |
+| `.hide-table-length` | Added to the wrapper (editor only) | Applied in the Elementor editor when **Entries Per Page** is hidden. |
+
+### DataTables-generated classes
+
+These classes are written by the DataTables library and follow the [standard DataTables DOM structure](https://datatables.net).
+
+| Class | Description |
+|---|---|
+| `.dt-search` | DataTables search container |
+| `.dt-input` | DataTables input fields (search and length dropdown) |
+| `.dt-length` | Entries-per-page container |
+| `.dt-info` | Paging info text (e.g., "Showing 1 to 10 of 50 entries") |
+| `.dt-paging` | Pagination container |
+| `.dt-paging-button` | Individual pagination buttons |
+
+<Note>
+  Tablentor styles are enqueued on the frontend only when the widget is present on the page, using `wp_enqueue_style` with the handles `tablentor-data-table` and `tablentor-table-csv`.
+</Note>
+
+### Example CSS
+
+```css
+/* Alternate row colors in a CSV table */
+.tablentor-table-csv tbody tr:nth-child(even) td {
+  background-color: #f5f5f5;
+}
+
+/* Highlight the active pagination button */
+.tablentor-table-csv-container .dt-paging .dt-paging-button.current {
+  background: #94cb04 !important;
+  color: #fff !important;
+}
+```
